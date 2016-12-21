@@ -13,7 +13,7 @@ open class CSV {
     public init(content: String?, delimiter: CharacterSet, encoding: UInt) throws{
         if let csvStringToParse = content{
             self.delimiter = delimiter
-
+            
             let newline = CharacterSet.newlines
             var lines: [String] = []
             csvStringToParse.trimmingCharacters(in: newline).enumerateLines { line, stop in lines.append(line) }
@@ -34,7 +34,6 @@ open class CSV {
         };
         try self.init(content: csvString,delimiter:comma, encoding:String.Encoding.utf8.rawValue)
     }
-    
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
         return lines[0].components(separatedBy: self.delimiter)
@@ -59,7 +58,6 @@ open class CSV {
             }
             rows.append(row)
         }
-        
         return rows
     }
     
@@ -70,7 +68,6 @@ open class CSV {
             let column = self.rows.map { row in row[header] != nil ? row[header]! : "" }
             columns[header] = column
         }
-        
         return columns
     }
 }

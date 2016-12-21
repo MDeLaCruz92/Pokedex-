@@ -23,31 +23,25 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var currentEvoImage: UIImageView!
     @IBOutlet weak var nextEvoImage: UIImageView!
     @IBOutlet weak var evoLabel: UILabel!
-    
     @IBOutlet weak var nameLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // if the passing of the data work correctly 
         nameLabel.text = pokemon.name.capitalized
         
         // Allows to transfer API data image to
         let img = UIImage(named: "\(pokemon.pokedexId)")
-        
         mainImg.image = img
         currentEvoImage.image = img
         pokedexIDLabel.text = "\(pokemon.pokedexId)"
-        
         pokemon.downloadPokemonDetail {
-            
             // Whatever we write will only be called after the network call is complete!
             self.updateUI()
         }
     }
     
     func updateUI() {
-        
         baseAttackLabel.text = pokemon.attack
         defenseLabel.text = pokemon.defense
         heightLabel.text = pokemon.height
@@ -56,7 +50,6 @@ class PokemonDetailVC: UIViewController {
         descriptionLabel.text = pokemon.description
         
         if pokemon.nextEvoId == "" {
-            
             evoLabel.text = "No Evolutions"
             nextEvoImage.isHidden = true
         } else {
@@ -68,9 +61,6 @@ class PokemonDetailVC: UIViewController {
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        
         dismiss(animated: true, completion: nil)
     }
-   
-
 }
